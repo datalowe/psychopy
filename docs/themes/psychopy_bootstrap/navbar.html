@@ -30,20 +30,19 @@
                         role="menu"
                         aria-labelledby="dLabelGlobalToc">
                         <ul>
-                            <li class="toctree-l1"><a class="reference internal" href="about/index.html">About</a>
+                            <li class="toctree-l1"><a class="reference internal" href="{{ pathto('about/index') }}">About</a>
                             </li>
-                            <li class="toctree-l1"><a class="reference internal"
-                                                      href="documentation.html">Documentation</a></li>
-                            <li class="toctree-l1"><a class="reference internal" href="api/api.html">Reference Manual
+                            <li class="toctree-l1"><a class="reference internal" href="{{ pathto('documentation') }}">Documentation</a></li>
+                            <li class="toctree-l1"><a class="reference internal" href="{{ pathto('api/index') }}">Reference Manual
                                 (API)</a></li>
-                            <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a>
+                            <li class="toctree-l1"><a class="reference internal" href="{{ pathto('changelog') }}">Changelog</a>
                             </li>
-                            <li class="toctree-l1"><a class="reference internal" href="resources/index.html">Resources
+                            <li class="toctree-l1"><a class="reference internal" href="{{ pathto('resources/index') }}">Resources
                                 (e.g. for teaching)</a></li>
                         </ul>
                     </ul>
                 </li>
-
+            <li><a href="{{ pathto('consultancy') }}" style="font-weight:bold">Consultancy</a></li>
             {% if theme_navbar_links %}
               {%- for link in theme_navbar_links %}
                 <li><a href="{{ pathto(*link[1:]) }}">{{ link[0] }}</a></li>

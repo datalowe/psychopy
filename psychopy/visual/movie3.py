@@ -25,7 +25,7 @@ movie is long then audio will be huge and currently the whole thing gets
 """
 
 # Part of the PsychoPy library
-# Copyright (C) 2002-2018 Jonathan Peirce (C) 2019-2020 Open Science Tools Ltd.
+# Copyright (C) 2002-2018 Jonathan Peirce (C) 2019-2021 Open Science Tools Ltd.
 # Distributed under the terms of the GNU General Public License (GPL).
 
 from __future__ import absolute_import, division, print_function
@@ -119,7 +119,7 @@ class MovieStim3(BaseVisualStim, ContainerMixin, TextureMixin):
         self.flipHoriz = flipHoriz
         self.pos = numpy.asarray(pos, float)
         self.depth = depth
-        self.opacity = float(opacity)
+        self.opacity = opacity
         self.interpolate = interpolate
         self.noAudio = noAudio
         self._audioStream = None
@@ -497,7 +497,7 @@ class MovieStim3(BaseVisualStim, ContainerMixin, TextureMixin):
     def __del__(self):
         try:
             self._unload()
-        except ModuleNotFoundError:
+        except (ImportError, ModuleNotFoundError, TypeError):
             pass  # has probably been garbage-collected already
 
     def setAutoDraw(self, val, log=None):
