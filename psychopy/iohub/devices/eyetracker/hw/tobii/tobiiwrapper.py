@@ -35,8 +35,8 @@ class TobiiTracker(object):
             retry_count = retry_count - 1
 
         if len(trackers)==0:
-            raise RuntimeError('Could detect any Tobii devices.')
-            
+            raise RuntimeError('Could not detect any Tobii devices.')
+
         if serial_number or model:
             for et in trackers:
                 if serial_number == et.serial_number:
