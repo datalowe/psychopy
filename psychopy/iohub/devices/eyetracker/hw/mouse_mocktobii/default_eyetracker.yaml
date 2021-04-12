@@ -1,0 +1,63 @@
+eyetracker.hw.mouse_mocktobii.EyeTracker:
+    enable: True
+    name: tracker
+    save_events: True
+    stream_events: True
+    event_buffer_length: 1024
+    device_timer:
+        interval: 0.01
+    runtime_settings:
+        sampling_rate: 50
+        track_eyes: RIGHT_EYE
+    controls:
+        move: RIGHT_BUTTON
+        blink: [LEFT_BUTTON, RIGHT_BUTTON]
+        saccade_threshold: 0.5
+    monitor_event_types: [MonocularEyeSampleEvent, FixationStartEvent, FixationEndEvent, SaccadeStartEvent, SaccadeEndEvent, BlinkStartEvent, BlinkEndEvent]
+    model_name: MouseGaze
+    manufacturer_name: MouseGaze
+    auto_report_events: False
+    device_number: 0
+    builder_hides: ['builder_hides', 'enable', 'name', 'device_number', 'device_timer', 'auto_report_events']
+    calibration:
+        # THREE_POINTS,FIVE_POINTS,NINE_POINTS
+        type: FIVE_POINTS
+
+        # Should the target positions be randomized?
+        randomize: True
+
+        # auto_pace can be True or False. If True, the eye tracker will
+        # automatically progress from one calibration point to the next.
+        # If False, a manual key or button press is needed to progress to
+        # the next point.
+        auto_pace: True
+
+        # pacing_speed: the number of sec.msec that a calibration point
+        # should be displayed before moving onto the next point. Only
+        # used when auto_pace is set to True.
+        pacing_speed: 1.5
+
+        # screen_background_color specifies the r,g,b background color to
+        # set the calibration, validation, etc, screens to.
+        # Each element of the color should be a value between 0 and 255.
+        screen_background_color: [128,128,128]
+
+        # The associated target attribute properties can be supplied
+        # for the fixation target used during calibration.
+        # Sizes are in pixels, colors in rgb255 format:
+        target_attributes:
+            outer_diameter: 35
+            outer_stroke_width: 2
+            outer_fill_color: [128,128,128]
+            outer_line_color: [255,255,255]
+            inner_diameter: 7
+            inner_stroke_width: 1
+            inner_color: [0,0,0]
+            inner_fill_color: [0,0,0]
+            inner_line_color: [0,0,0]
+            animate:
+                enable: True
+                movement_velocity: 750.0  # 750 pix / sec
+                expansion_ratio: 3.0  # expands to 3 x the starting size
+                expansion_speed: 45.0  # exapands at 45.0 pix / sec
+                contract_only: True

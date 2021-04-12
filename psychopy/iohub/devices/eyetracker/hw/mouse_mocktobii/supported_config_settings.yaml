@@ -1,0 +1,101 @@
+eyetracker.hw.mouse.EyeTracker:
+    name: tracker
+    enable: IOHUB_BOOL
+    device_timer:
+        interval:
+            IOHUB_FLOAT:
+                min: 0.001
+                max: 0.020
+    model_name: MouseGaze
+    save_events: IOHUB_BOOL
+    stream_events: IOHUB_BOOL
+    auto_report_events: False
+    event_buffer_length:
+        IOHUB_INT:
+            min: 1
+            max: 2048
+    monitor_event_types:
+        IOHUB_LIST:
+            valid_values: [MonocularEyeSampleEvent, FixationStartEvent, FixationEndEvent, SaccadeStartEvent, SaccadeEndEvent, BlinkStartEvent, BlinkEndEvent]
+            min_length: 1
+            max_length: 7
+    controls:
+        move:
+            IOHUB_LIST:
+                valid_values: [LEFT_BUTTON, MIDDLE_BUTTON, RIGHT_BUTTON]
+                min_length: 1
+                max_length: 1
+        blink:
+            IOHUB_LIST:
+                valid_values: [LEFT_BUTTON, MIDDLE_BUTTON, RIGHT_BUTTON]
+                min_length: 1
+                max_length: 3
+        saccade_threshold:
+            IOHUB_FLOAT:
+                min: 0.1
+                max: 2.0
+    runtime_settings:
+        sampling_rate:
+            IOHUB_LIST:
+                valid_values: [50, 100]
+                min_length: 1
+                max_length: 1
+        track_eyes: RIGHT_EYE
+    device_number: 0
+    manufacturer_name: MouseGaze
+    builder_hides: ['builder_hides', 'enable', 'name', 'device_number', 'device_timer', 'auto_report_events']
+    calibration:
+        minimize_psychopy_win: IOHUB_BOOL
+        # The Tobii ioHub Common Eye Tracker Interface currently support
+        # a 3, 5 and 9 point calibration mode.
+        # THREE_POINTS,FIVE_POINTS,NINE_POINTS
+        type:
+            IOHUB_LIST:
+                valid_values: [THREE_POINTS,FIVE_POINTS,NINE_POINTS]
+                min_length: 1
+                max_length: 1
+        randomize: IOHUB_BOOL
+        target_positions: []
+        auto_pace: IOHUB_BOOL
+        pacing_speed:
+            IOHUB_FLOAT:
+                min: 0.5
+                max: 2.5
+        screen_background_color: IOHUB_COLOR
+        target_type: [CIRCLE_TARGET,]
+        target_attributes:
+            outer_diameter:
+                IOHUB_FLOAT:
+                    min: 0.01
+                    max: 1000.0
+            outer_stroke_width:
+                IOHUB_FLOAT:
+                    min: 0.01
+                    max: 1000.0
+            outer_fill_color: IOHUB_COLOR
+            outer_line_color: IOHUB_COLOR
+            inner_diameter:
+                IOHUB_FLOAT:
+                    min: 0.01
+                    max: 1000.0
+            inner_stroke_width:
+                IOHUB_FLOAT:
+                    min: 0.01
+                    max: 1000.0
+            inner_fill_color: IOHUB_COLOR
+            inner_line_color: IOHUB_COLOR
+            animate:
+                enable: IOHUB_BOOL
+                movement_velocity: # 300 pix / sec
+                    IOHUB_FLOAT:
+                        min: 1.0
+                        max: 1000.0
+                expansion_ratio: # expands to 3 x the starting size
+                    IOHUB_FLOAT:
+                        min: 1.0
+                        max: 100.0
+                expansion_speed: # exapands at 30.0 pix / sec
+                    IOHUB_FLOAT:
+                        min: 1.0
+                        max: 100.0
+                contract_only: IOHUB_BOOL
