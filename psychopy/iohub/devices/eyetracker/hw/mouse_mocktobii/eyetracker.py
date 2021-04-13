@@ -2,21 +2,13 @@
 # Part of the psychopy.iohub library.
 # Copyright (C) 2012-2016 iSolver Software Solutions
 # Distributed under the terms of the GNU General Public License (GPL).
-import math
-
 from psychopy.iohub.errors import print2err, printExceptionDetailsToStdErr
-from psychopy.iohub.constants import EyeTrackerConstants, EventConstants
-from psychopy.iohub.devices import Computer, Device
-from psychopy.iohub.devices.eyetracker import EyeTrackerDevice
+from psychopy.iohub.constants import EyeTrackerConstants
 
 from .mock_tobiiwrapper import MockTobiiTracker
 from ..mouse import EyeTracker as BaseMouseTracker
 
 
-ET_UNDEFINED = EyeTrackerConstants.UNDEFINED
-getTime = Computer.getTime
-
-# class EyeTracker(EyeTrackerDevice):
 class EyeTracker(BaseMouseTracker):
     """
     To start iohub with a Mouse Simulated eye tracker, add the full iohub device name
@@ -94,7 +86,8 @@ class EyeTracker(BaseMouseTracker):
 
             calibrationOK = genv.runCalibration()
 
-            # On some graphics cards, we have to minimize before closing or the calibration window will stay visible
+            # On some graphics cards, we have to minimize before
+            # closing or the calibration window will stay visible
             # after close is called.
             genv.window.winHandle.set_visible(False)
             genv.window.winHandle.minimize()
