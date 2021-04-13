@@ -1,30 +1,33 @@
-"""ioHub Common Eye Tracker Interface for Tobii (C) Eye Tracking System."""
+"""Mocked version of the ioHub Common Eye Tracker Interface for Tobii (C)
+Eye Tracking System. Refer to the non-mocked version's script to see
+what additional imports etc. might be necessary if implementing/mocking
+more of the non-mocked class methods."""
 from __future__ import print_function
 # -*- coding: utf-8 -*-
 # Part of the psychopy.iohub library.
 # Copyright (C) 2012-2016 iSolver Software Solutions
 # Distributed under the terms of the GNU General Public License (GPL).
 
-import numpy as np
 from .....devices import Computer
-from .....errors import print2err, printExceptionDetailsToStdErr
 
 getTime = Computer.getTime
 
-# MOCKED Tobii Eye Tracker / tobii_research package functionality wrapper
-class MockTobiiTracker(object):
-    try:
-        CALIBRATION_STATUS_SUCCESS = tobii_research.CALIBRATION_STATUS_SUCCESS
-    except:
-        CALIBRATION_STATUS_SUCCESS = 1
+class MockTobiiTracker:
+    """
+    This is a *mocked* version of the class in
+    psychopy.iohub.devices.eyetracker.hw.tobii.tobiiwrapper.
+    It is *only* for use by the 'mouse_mocktobii' EyeTracker class.
+    It includes all attributes of the non-mocked TobiiTracker wrapper,
+    but only implements (in a barebones fashion) methods that
+    are necessary for running a mocked calibration procedure.
+    """
+    CALIBRATION_STATUS_SUCCESS = 1
 
     def __init__(self, serial_number=None,  model=None):
-        """
-        """
         if serial_number and model:
             print(
                 f'Mocking tobii tracker with serial number {serial_number}'
-                ', model {model}...'
+                f', model {model}...'
             )
         else:
             print('Mocking tobii tracker...')
@@ -33,13 +36,17 @@ class MockTobiiTracker(object):
         self._isRecording = False
 
     def newScreenCalibration(self):
-        if self._eyetracker:
-            return MockScreenBasedCalibration(self._eyetracker)
+        """
+        Returns a mocked ScreenBasedCalibration instance. For
+        more information, see the documentation for the
+        `MockScreenBasedCalibration` class.
+        """
+        return MockScreenBasedCalibration(self._eyetracker)
 
 # MOCKED version of tobii_research's ScreenBasedCalibration class
 class MockScreenBasedCalibration:
     """
-    This is a MOCKED version of the tobii_research package's
+    This is a *mocked* version of the tobii_research package's
     ScreenBasedCalibration class. It only 'implements'/mocks methods
     that are used by the `TobiiPsychopyCalibrationGraphics` class.
     """
